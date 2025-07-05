@@ -136,10 +136,10 @@ export default function TopBar({
             <>
               <Button variant="ghost" size="sm" disabled={isGenerating}>
                 <Play className="w-4 h-4 mr-1" />
-                Simulate
+                Simulate(soon)
               </Button>
               <Button variant="ghost" size="sm" disabled={isGenerating}>
-                Synthesize
+                Synthesize(soon)
               </Button>
               <div className="w-px h-6 bg-gray-300"></div>
               <Button variant="ghost" size="sm" disabled={isGenerating}>

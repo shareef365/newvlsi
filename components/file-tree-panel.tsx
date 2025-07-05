@@ -95,7 +95,7 @@ export default function FileTreePanel({
                 disabled={isGenerating}
               >
                 <Play className="w-4 h-4 mr-1" />
-                Simulate
+                Simulate(soon)
               </Button>
             )}
             <Button

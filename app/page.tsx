@@ -666,7 +666,7 @@ export default function VLSIDesignStudio() {
                   <div className="text-center text-gray-500 py-8">
                     <div className="w-8 h-8 mx-auto mb-2 text-gray-300">
                       {isGeneratingInitial ? (
-                        <img className="w-2 h-2" src="/loaging.gif" alt="loading icon" />
+                        <img className="w-2 h-2" src="/loading.gif" alt="loading icon" />
                       ) : (
                         "📄"
                       )}

@@ -297,9 +297,9 @@ export default function ProjectDashboard({
         {/* Header Banner */}
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-blue-200 px-6 py-3">
           <div className="flex items-center gap-2">
-            <div className="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">New</div>
-            <span className="text-sm text-gray-700">VLSI Design Studio is now powered by vlsigpt.</span>
-            <button className="text-sm text-blue-600 hover:text-blue-800 font-medium">Learn More →</button>
+            <div className="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">VLSI Design Studio is in beta</div>
+            <span className="text-sm text-gray-700">Now powered by vlsigpt. </span>
+            <button className="text-sm text-blue-600 hover:text-blue-800 font-medium" onClick={() => window.location.href = "https://vlsigpt.com"} >Learn More →</button>
           </div>
         </div>
 
@@ -361,6 +361,7 @@ export default function ProjectDashboard({
             </div>
 
             {/* Quick Actions */}
+            <div className="flex flex-col justify-center"><span className=" text-red-400 flex justify-center items-center">Coming soon</span>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
               <Button
                 variant="outline"
@@ -394,7 +395,8 @@ export default function ProjectDashboard({
                 <Zap className="w-5 h-5 text-gray-600" />
                 <span className="text-sm">Synthesize</span>
               </Button>
-            </div>
+            </div></div>
+            
 
             {/* Starter Templates */}
             <div>
