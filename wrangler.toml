@@ -3,6 +3,6 @@ compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".vercel/output/static"
 
-[vars]
-NEXT_PUBLIC_SUPABASE_URL = "https://yegftbzfhejglqaarvdx.supabase.co"
-NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InllZ2Z0YnpmaGVqZ2xxYWFydmR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAzMTgxMjcsImV4cCI6MjA2NTg5NDEyN30.k5bPALXRf8I9VNe-YLTUYhKGRm_QeHIC2gzA6sK91FU"
+# [vars]
+# NEXT_PUBLIC_SUPABASE_URL = "https://yegftbzfhejglqaarvdx.supabase.co"
+# NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InllZ2Z0YnpmaGVqZ2xxYWFydmR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAzMTgxMjcsImV4cCI6MjA2NTg5NDEyN30.k5bPALXRf8I9VNe-YLTUYhKGRm_QeHIC2gzA6sK91FU"
