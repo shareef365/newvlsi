@@ -1,3 +1,4 @@
+export const runtime = "edge";
 import { createServerSupabaseClient } from "@/lib/supabase"
 import { type NextRequest, NextResponse } from "next/server"
 import { cookies } from "next/headers"
