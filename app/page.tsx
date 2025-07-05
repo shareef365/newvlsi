@@ -10,6 +10,7 @@ import FileTreePanel from "@/components/file-tree-panel"
 import ResizeHandle from "@/components/resize-handle"
 import LoginForm from "@/components/auth/login-form"
 import type { User } from "@supabase/supabase-js"
+import { Files,Cpu,Activity } from 'lucide-react'
 
 export interface FileNode {
   id: string
@@ -226,7 +227,7 @@ export default function VLSIDesignStudio() {
         id: `loading-${Date.now()}`,
         role: "assistant",
         content:
-          "🔄 Generating your VLSI design with Qwen2.5-Coder-32B...\n\nThis may take a few moments. Please wait while I create your Verilog modules and testbenches.",
+          "🔄 Generating your VLSI design with vlsigpt...\n\nThis may take a few moments. Please wait while I create your Verilog modules and testbenches.",
         timestamp: new Date(),
       }
 
@@ -249,7 +250,7 @@ export default function VLSIDesignStudio() {
           const aiMessage: ChatMessage = {
             id: `ai-${Date.now()}`,
             role: "assistant",
-            content: `✅ **Project "${projectName}" created successfully!**\n\n**Files Generated:**\n• ${newFiles[0]?.name || result.mainFile.name}\n• ${newFiles[1]?.name || result.testbenchFile.name}\n\nYour VLSI design is ready for simulation and further development. You can now:\n\n• Edit the generated code in the file explorer\n• Run simulations on your testbench\n• Ask me to modify or optimize the design\n• Generate additional modules`,
+            content: ` **Project "${projectName}" created successfully!**\n\n**Files Generated:**\n• ${newFiles[0]?.name || result.mainFile.name}\n• ${newFiles[1]?.name || result.testbenchFile.name}\n\nYour VLSI design is ready for simulation and further development. You can now:\n\n• Edit the generated code in the file explorer\n• Run simulations on your testbench\n• Ask me to modify or optimize the design\n• Generate additional modules`,
             timestamp: new Date(),
           }
 
@@ -644,18 +645,20 @@ export default function VLSIDesignStudio() {
               className="border-r border-gray-200 bg-gray-50 flex flex-col min-h-0"
               style={{ width: `${filePanelWidth}px` }}
             >
-              <div className="p-3 border-b border-gray-200 flex-shrink-0">
-                <h3 className="font-medium text-gray-900 flex items-center gap-2">
-                  <span className="text-blue-500">⚡</span>
+              <div className="p-3 border-b border-gray-200 flex-shrink-0 ">
+                <div className="flex flex-row justify-between">
+                  <h3 className="font-medium text-gray-900 flex items-center gap-2">
+                   <Files className="w-4 h-4 " />
                   Hardware Files
                   {isGeneratingInitial && (
-                    <div className="flex items-center gap-1 text-blue-500">
-                      <div className="animate-spin rounded-full h-3 w-3 border-b border-blue-500"></div>
+                    <div className="flex items-center gap-1 ">
                       <span className="text-xs">Generating...</span>
                     </div>
                   )}
                 </h3>
                 <p className="text-xs text-gray-500 mt-1">{files.length} files</p>
+                </div>
+                
               </div>
 
               <div className="flex-1 overflow-y-auto p-1.5 min-h-0">
@@ -663,7 +666,7 @@ export default function VLSIDesignStudio() {
                   <div className="text-center text-gray-500 py-8">
                     <div className="w-8 h-8 mx-auto mb-2 text-gray-300">
                       {isGeneratingInitial ? (
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                        <img className="w-2 h-2" src="/loaging.gif" alt="loading icon" />
                       ) : (
                         "📄"
                       )}
@@ -680,14 +683,14 @@ export default function VLSIDesignStudio() {
                     {files.map((file) => (
                       <li key={file.id}>
                         <button
-                          className={`mb-0 h-[26px] w-full min-w-36 justify-start gap-2 pl-0.5 pr-1 rounded-lg text-left hover:bg-gray-200 ${
+                          className={`mb-0 h-[26px] flex  items-center w-full min-w-36 justify-start gap-2 pl-0.5 pr-1 rounded-lg text-left hover:bg-gray-200 ${
                             activeFile?.id === file.id ? "bg-gray-200" : ""
                           }`}
                           onClick={() => handleFileSelect(file)}
                         >
                           <div className="flex min-w-0 items-center gap-1 px-2 py-1">
-                            <div className="p-0.5 text-gray-500">
-                              <span className="text-sm">{file.name.includes("testbench") ? "🧪" : "⚡"}</span>
+                            <div className="p-0.5 text-black ">
+                              <span className="text-sm items-center">{file.name.includes("testbench") ? <Activity className="w-3 h-3"/> : <Cpu className="w-3 h-3" />}</span>
                             </div>
                             <span className="truncate font-normal text-sm">{file.name}</span>
                           </div>

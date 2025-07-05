@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Edit, Trash2, Copy } from "lucide-react"
+import { Edit, Trash2, Copy, User } from "lucide-react"
 import type { ChatMessage } from "@/app/page"
 
 interface ChatMessageProps {
@@ -140,15 +140,15 @@ export default function ChatMessageComponent({ message, onEdit, onDelete, onCopy
         <div className="relative flex items-start gap-2">
           {/* Avatar */}
           <a className="flex items-center" href={`#${message.id}`}>
-            <span className="bg-gray-400 relative flex shrink-0 select-none items-center justify-center overflow-hidden after:absolute after:inset-0 after:border after:mix-blend-darken dark:after:mix-blend-lighten size-6 rounded-lg text-xs after:rounded-lg">
+            <span className=" relative flex shrink-0 select-none items-center justify-center overflow-hidden after:absolute after:inset-0 after:border after:mix-blend-darken dark:after:mix-blend-lighten size-6 rounded-full text-xs after:rounded-full">
               {isUser ? (
-                <img
+                <User
                   className="h-full w-full object-cover aspect-auto"
-                  alt="User Avatar"
-                  src="https://vercel.com/api/www/avatar/3myGBRNbUEFymi8z4nuDuoOc"
                 />
               ) : (
-                <div className="bg-blue-500 text-white text-xs font-medium">AI</div>
+                <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+              <div className="w-2 h-2 rounded-full bg-white"></div>
+            </div>
               )}
             </span>
           </a>

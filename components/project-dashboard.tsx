@@ -55,7 +55,7 @@ export default function ProjectDashboard({
   const [searchQuery, setSearchQuery] = useState("")
   const [showFavorites, setShowFavorites] = useState(true)
   const [showRecents, setShowRecents] = useState(true)
-  const [selectedModel, setSelectedModel] = useState("Qwen2.5-Coder-32B")
+  const [selectedModel, setSelectedModel] = useState("vlsigpt")
   const [promptInput, setPromptInput] = useState("")
   const [isGenerating, setIsGenerating] = useState(false)
 
@@ -152,11 +152,11 @@ export default function ProjectDashboard({
         {/* Header */}
         <div className="p-4 border-b border-gray-200">
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
-              <Zap className="w-5 h-5 text-white" />
+            <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+              <div className="w-2 h-2 rounded-full bg-white"></div>
             </div>
             <div>
-              <div className="font-semibold text-gray-900">VLSI Studio</div>
+              <div className="font-semibold text-gray-900 ">VLSI Studio</div>
               <div className="text-xs text-gray-500">Personal • Free</div>
             </div>
           </div>
@@ -298,7 +298,7 @@ export default function ProjectDashboard({
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-blue-200 px-6 py-3">
           <div className="flex items-center gap-2">
             <div className="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">New</div>
-            <span className="text-sm text-gray-700">VLSI Design Studio is now powered by Qwen2.5-Coder-32B.</span>
+            <span className="text-sm text-gray-700">VLSI Design Studio is now powered by vlsigpt.</span>
             <button className="text-sm text-blue-600 hover:text-blue-800 font-medium">Learn More →</button>
           </div>
         </div>
@@ -333,7 +333,7 @@ export default function ProjectDashboard({
                     disabled={isGenerating}
                     className="text-sm border border-gray-200 rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-50"
                   >
-                    <option value="Qwen2.5-Coder-32B">Qwen2.5-Coder-32B</option>
+                    <option value="vlsigpt">vlsigpt</option>
                   </select>
                   <Button
                     size="sm"

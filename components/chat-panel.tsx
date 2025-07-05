@@ -131,7 +131,7 @@ export default function ChatPanel({
         const aiMessage: ChatMessage = {
           id: `ai-${Date.now()}`,
           role: "assistant",
-          content: `✅ **Code Generated Successfully!**\n\n**Files Created:**\n• ${createdFiles?.[0]?.name || processedMainFile.name}\n• ${createdFiles?.[1]?.name || processedTestbenchFile.name}\n\nThe files have been added to your project and are ready for simulation.`,
+          content: ` **Code Generated Successfully!**\n\n**Files Created:**\n• ${createdFiles?.[0]?.name || processedMainFile.name}\n• ${createdFiles?.[1]?.name || processedTestbenchFile.name}\n\nThe files have been added to your project and are ready for simulation.`,
           timestamp: new Date(),
         }
         onSendMessage(aiMessage)
@@ -163,7 +163,7 @@ export default function ChatPanel({
       const errorMessage: ChatMessage = {
         id: `error-${Date.now()}`,
         role: "assistant",
-        content: `❌ **Generation Failed**\n\n**Error:** ${error instanceof Error ? error.message : "Failed to generate code"}\n\n**Troubleshooting:**\n• Try a simpler request (e.g., "Generate a 2-bit adder")\n• Be more specific about inputs/outputs\n• Check if the Cloudflare Worker is running\n• Ensure your prompt is clear and concise`,
+        content: `❌ **Generation Failed**\n\n**Error:** ${error instanceof Error ? error.message : "Failed to generate code"}\n\n**Troubleshooting:**\n• Try a simpler request (e.g., "Generate a 2-bit adder")\n• Be more specific about inputs/outputs\n• Ensure your prompt is clear and concise`,
         timestamp: new Date(),
       }
       onSendMessage(errorMessage)
@@ -182,7 +182,7 @@ export default function ChatPanel({
 
     onSendMessage(userMessage)
 
-    // Generate VLSI code using your Cloudflare Worker
+    // Generate VLSI code using your vlsigpt
     await generateVLSICode(message)
   }
 
@@ -305,8 +305,8 @@ export default function ChatPanel({
         {isGenerating && (
           <div className="flex w-full px-4 py-3">
             <div className="flex items-center gap-2">
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500"></div>
-              <span className="text-sm text-gray-500">Generating VLSI code with Qwen2.5-Coder-32B...</span>
+              <img className="w-3 h-3" src="/loading.gif" alt="" />
+              <span className="text-sm text-gray-500">Generating ...</span>
             </div>
           </div>
         )}
@@ -363,7 +363,7 @@ export default function ChatPanel({
                     type="button"
                     disabled={isAnyGenerating}
                   >
-                    <span>Qwen2.5-Coder-32B</span>
+                    <span>vlsigpt</span>
                     <ChevronDown className="w-4 h-4 ml-1" />
                   </Button>
                 </div>
@@ -388,7 +388,7 @@ export default function ChatPanel({
 
         {/* Disclaimer */}
         <p className="py-2 text-center text-xs text-gray-500">
-          VLSI Code Generator powered by Qwen2.5-Coder-32B via Cloudflare Workers
+          VLSI Code Generator powered by vlsigpt 
         </p>
       </div>
     </div>

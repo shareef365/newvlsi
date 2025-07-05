@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { useRef, useEffect, useState } from "react"
+import {Activity,Cpu} from "lucide-react"
 
 interface VerilogEditorProps {
   content: string
@@ -50,9 +51,9 @@ export default function VerilogEditor({ content, onChange, readOnly = false, fil
 
   const getFileIcon = (fileName: string) => {
     if (fileName?.endsWith("-testbench.v")) {
-      return "🧪"
+      return <Activity className="w-3 h-3"/>
     } else if (fileName?.endsWith(".v")) {
-      return "⚡"
+      return <Cpu className="w-3 h-3"/>
     } else if (fileName?.endsWith(".vhd") || fileName?.endsWith(".vhdl")) {
       return "🔧"
     } else if (fileName?.endsWith(".sv")) {
