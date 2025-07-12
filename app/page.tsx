@@ -10,7 +10,7 @@ import FileTreePanel from "@/components/file-tree-panel"
 import ResizeHandle from "@/components/resize-handle"
 import LoginForm from "@/components/auth/login-form"
 import type { User } from "@supabase/supabase-js"
-import { Files,Cpu,Activity } from 'lucide-react'
+import { Files, Cpu, Activity } from 'lucide-react'
 
 export interface FileNode {
   id: string
@@ -243,8 +243,24 @@ export default function VLSIDesignStudio() {
         if (result.mainFile && result.testbenchFile) {
           setGenerationStatus("Processing generated files...")
 
-          // Process and save the generated files - THIS IS THE KEY FIX
+          // Process and save the generated files
           const newFiles = await handleCodeGenerated(result.mainFile, result.testbenchFile)
+
+          // --- Fetch files from backend for the new project and update state ---
+          const projectFiles = await d1Client.getProjectFiles(newProject.id);
+          setFiles(projectFiles.map(file => ({
+            id: file.id,
+            name: file.name,
+            type: "file" as const,
+            content: file.content,
+          })));
+          setActiveFile(projectFiles.length > 0 ? {
+            id: projectFiles[0].id,
+            name: projectFiles[0].name,
+            type: "file" as const,
+            content: projectFiles[0].content,
+          } : null);
+          // -------------------------------------------------------------------
 
           // Add success message with actual file names
           const aiMessage: ChatMessage = {
@@ -330,13 +346,13 @@ export default function VLSIDesignStudio() {
         messages.length > 0
           ? messages
           : [
-              {
-                id: "welcome-back",
-                role: "assistant",
-                content: `Welcome back to ${project.name}!\n\nI'm ready to continue working on your VLSI designs. What would you like to work on today?`,
-                timestamp: new Date(),
-              },
-            ],
+            {
+              id: "welcome-back",
+              role: "assistant",
+              content: `Welcome back to ${project.name}!\n\nI'm ready to continue working on your VLSI designs. What would you like to work on today?`,
+              timestamp: new Date(),
+            },
+          ],
       )
 
       if (fileNodes.length > 0) {
@@ -648,17 +664,17 @@ export default function VLSIDesignStudio() {
               <div className="p-3 border-b border-gray-200 flex-shrink-0 ">
                 <div className="flex flex-row justify-between">
                   <h3 className="font-medium text-gray-900 flex items-center gap-2">
-                   <Files className="w-4 h-4 " />
-                  Hardware Files
-                  {isGeneratingInitial && (
-                    <div className="flex items-center gap-1 ">
-                      <span className="text-xs">Generating...</span>
-                    </div>
-                  )}
-                </h3>
-                <p className="text-xs text-gray-500 mt-1">{files.length} files</p>
+                    <Files className="w-4 h-4 " />
+                    Hardware Files
+                    {isGeneratingInitial && (
+                      <div className="flex items-center gap-1 ">
+                        <span className="text-xs">Generating...</span>
+                      </div>
+                    )}
+                  </h3>
+                  <p className="text-xs text-gray-500 mt-1">{files.length} files</p>
                 </div>
-                
+
               </div>
 
               <div className="flex-1 overflow-y-auto p-1.5 min-h-0">
@@ -683,14 +699,13 @@ export default function VLSIDesignStudio() {
                     {files.map((file) => (
                       <li key={file.id}>
                         <button
-                          className={`mb-0 h-[26px] flex  items-center w-full min-w-36 justify-start gap-2 pl-0.5 pr-1 rounded-lg text-left hover:bg-gray-200 ${
-                            activeFile?.id === file.id ? "bg-gray-200" : ""
-                          }`}
+                          className={`mb-0 h-[26px] flex  items-center w-full min-w-36 justify-start gap-2 pl-0.5 pr-1 rounded-lg text-left hover:bg-gray-200 ${activeFile?.id === file.id ? "bg-gray-200" : ""
+                            }`}
                           onClick={() => handleFileSelect(file)}
                         >
                           <div className="flex min-w-0 items-center gap-1 px-2 py-1">
                             <div className="p-0.5 text-black ">
-                              <span className="text-sm items-center">{file.name.includes("testbench") ? <Activity className="w-3 h-3"/> : <Cpu className="w-3 h-3" />}</span>
+                              <span className="text-sm items-center">{file.name.includes("testbench") ? <Activity className="w-3 h-3" /> : <Cpu className="w-3 h-3" />}</span>
                             </div>
                             <span className="truncate font-normal text-sm">{file.name}</span>
                           </div>
