@@ -59,6 +59,15 @@ export default function RootLayout({
         {/* Favicon and other icons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-60MKNV5SJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-60MKNV5SJF');
+</script>
         
         {/* Structured Data (JSON-LD) for Software Application */}
         <script
