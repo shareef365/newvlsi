@@ -10,7 +10,7 @@ export async function POST(req: Request) {
     console.log("Sending prompt to worker:", prompt)
 
     // Call your Cloudflare Worker
-    const response = await fetch("https://testvlsiworker.arshadahmedshareef101.workers.dev/", {
+    const response = await fetch("https://pagevlsi.arshadahmedshareef101.workers.dev/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
